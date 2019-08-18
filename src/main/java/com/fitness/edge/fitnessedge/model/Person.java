@@ -2,7 +2,7 @@ package com.fitness.edge.fitnessedge.model;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
@@ -10,12 +10,13 @@ import lombok.Data;
 @Data
 @Document(collection="Person")
 public class Person {
-	@Id
-	private String id;
+
+	private ObjectId id;
 	private String firstName;
 	private String lastName;
 	private Date dateOfBirth;
 	private String email;
-	private Integer phone;
+	private String phone;
+	private Address address;
 
 }
