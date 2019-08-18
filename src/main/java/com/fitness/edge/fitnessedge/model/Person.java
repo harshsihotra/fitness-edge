@@ -2,9 +2,7 @@ package com.fitness.edge.fitnessedge.model;
 
 import java.util.Date;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -22,13 +20,12 @@ public class Person {
 
 	@Id
 	@Field("_id")
-	private ObjectId id;
+	private String id;
 	private String firstName;
 	private String lastName;
 	private Date dateOfBirth;
 	private String email;
 	private String phone;
-	@DBRef
 	private Address address;
 
 }

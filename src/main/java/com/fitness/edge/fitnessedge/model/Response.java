@@ -14,6 +14,5 @@ public class Response {
 	private String status;
 	private String message;
 	private String personId;
-	private String addressId;
 	private List<Person> persons;
 }

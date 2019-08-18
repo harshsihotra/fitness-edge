@@ -20,7 +20,7 @@ public class PersonRepository {
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
-	public Person createPerson(Person person) {
+	public Person createPerson(Person person) throws Exception{
 		log.info("inserting:"+person.toString());
 		person = mongoTemplate.insert(person);
 		log.info("inserted:"+person.toString());

@@ -25,15 +25,20 @@ public class PersonController {
 	@PostMapping("/create")
 	public Response createPerson(@RequestBody Person person) {
 		Response response = new Response();
-		person = personRepository.createPerson(person);
-		if(!StringUtils.isEmpty(person.getId())){
-			response.setStatus("200");
-			response.setMessage("Success");
-			response.setPersonId(person.getId().toString());
-			response.setAddressId(person.getAddress().getId().toString());
-		}else {
+		try {
+			person = personRepository.createPerson(person);
+			if(!StringUtils.isEmpty(person.getId())){
+				response.setStatus("200");
+				response.setMessage("Success");
+				response.setPersonId(person.getId());
+			}else {
+				response.setStatus("500");
+				response.setMessage("Error Inserting person");
+			}
+		}catch (Exception e) {
+			log.error("Error Occurred :", e);
 			response.setStatus("500");
-			response.setMessage("Error");
+			response.setMessage(e.getMessage());
 		}
 		return response;
 	}
@@ -42,9 +47,9 @@ public class PersonController {
 	public Response getPerson(Person person) {
 		Response response = new Response();
 		try {
-		response.setStatus("200");
-		response.setMessage("Success");
-		 response.setPersons(personRepository.getPerson(person));
+			response.setStatus("200");
+			response.setMessage("Success");
+			response.setPersons(personRepository.getPerson(person));
 		}catch(Exception e) {
 			log.error("Error Occurred :", e);
 			response.setStatus("500");
